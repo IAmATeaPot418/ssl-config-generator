@@ -35,22 +35,22 @@ module.exports = {
     usesOpenssl: false,
   },
   caddy: {
+    cipherFormat: 'caddy',
     highlighter: 'nginx', // TODO: find better
-    latestVersion: '1.0.4',
+    latestVersion: '2.1.1',
     name: 'Caddy',
-    supportedCiphers: ['ECDHE-ECDSA-AES256-GCM-SHA384', 'ECDHE-RSA-AES256-GCM-SHA384', 'ECDHE-ECDSA-AES128-GCM-SHA256', 'ECDHE-RSA-AES128-GCM-SHA256', 'ECDHE-ECDSA-WITH-CHACHA20-POLY1305', 'ECDHE-RSA-WITH-CHACHA20-POLY1305', 'ECDHE-RSA-AES256-CBC-SHA', 'ECDHE-RSA-AES128-CBC-SHA', 'ECDHE-ECDSA-AES256-CBC-SHA', 'ECDHE-ECDSA-AES128-CBC-SHA', 'RSA-AES256-CBC-SHA', 'RSA-AES128-CBC-SHA', 'ECDHE-RSA-3DES-EDE-CBC-SHA', 'RSA-3DES-EDE-CBC-SHA'],
     supportsOcspStapling: false, // actually true; can't be disabled in Caddy
     tls13: '0.11.5',
     usesOpenssl: false,
   },
   dovecot: {
     highlighter: 'nginx', // TODO: find better
-    latestVersion: '2.3.9',
+    latestVersion: '2.3.16',
     name: 'Dovecot',
     showSupports: false,
     supportsHsts: false,
     supportsOcspStapling: false,
-    tls13: '2.0.0',
+    tls13: '2.3.15',
   },
   exim: {
     highlighter: 'nginx',
@@ -61,13 +61,13 @@ module.exports = {
     supportsOcspStapling: false,
     tls13: '4.92.0',
   },
-  golang: {
+  go: {
     cipherFormat: 'go',
     highlighter: 'go',
-    latestVersion: '1.13.6',
-    name: 'Golang',
+    latestVersion: '1.14.4',
+    name: 'Go',
     supportsOcspStapling: false,
-    tls13: '1.12.0',
+    tls13: '1.13.0',
     usesOpenssl: false,
   },
   haproxy: {
@@ -76,11 +76,21 @@ module.exports = {
     name: 'HAProxy',
     tls13: '1.8.0',
   },
+  jetty: {
+    cipherFormat: 'iana',
+    highlighter: 'xml',
+    latestVersion: '9.4.28',
+    name: 'Jetty',
+    supportsHsts: false,
+    supportsOcspStapling: false,
+    tls13: '9.4.12',
+    usesOpenssl: false,
+  },
   lighttpd: {
     highlighter: 'nginx',
-    latestVersion: '1.4.54',
+    latestVersion: '1.4.67',
     name: 'lighttpd',
-    tls13: '1.4.53'
+    tls13: '1.4.48'
   },
   mysql: {
     highlighter: 'ini',
@@ -99,7 +109,7 @@ module.exports = {
     tls13: '1.13.0',
   },
   openssl: {
-    latestVersion: '1.1.1d',
+    latestVersion: '1.1.1k',
     tls13: '1.1.1',
   },
   oraclehttp: {
@@ -136,6 +146,25 @@ module.exports = {
     supportsHsts: false,
     supportsOcspStapling: true,
     tls13: '1.3.6',
+  },
+  redis: {
+    highlighter: 'nginx',
+    latestVersion: '6.0',
+    name: 'Redis',
+    showSupports: false,
+    supportsHsts: false,
+    supportsOcspStapling: false,
+    tls13: '6.0',
+    usesOpenssl: true,
+  },
+  squid: {
+    highlighter: 'nginx',  // TODO: find better
+    latestVersion: '5.6',
+    name: 'Squid',
+    showSupports: false,
+    supportsHsts: false,
+    supportsOcspStapling: false,
+    tls13: '4',
   },
   tomcat: {
     highlighter: 'xml',

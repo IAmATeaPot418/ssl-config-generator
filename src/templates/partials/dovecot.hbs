@@ -5,10 +5,10 @@ ssl = required
 ssl_cert = </path/to/signed_cert_plus_intermediates
 ssl_key = </path/to/private_key
 {{#if output.usesDhe}}
-
-  {{#if (minver "2.3.0" form.serverVersion)}}
-# {{output.dhCommand}} > /path/to/dhparam.pem
-ssl_dh = </path/to/dhparam.pem
+  {{#if (minver "2.3.3" form.serverVersion)}}
+  {{else if (minver "2.3.0" form.serverVersion)}}
+# {{output.dhCommand}} > /path/to/dhparam
+ssl_dh = </path/to/dhparam
   {{else}}
 ssl_dh_parameters_length = {{output.dhParamSize}}
   {{/if}}

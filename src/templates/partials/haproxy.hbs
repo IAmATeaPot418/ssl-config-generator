@@ -3,7 +3,7 @@
 {{!Only version 1.5.0 and newer support TLS}}
 {{#if (minver "1.5.0" form.serverVersion)}}
 global
-    # {{form.config}} configuration, tweak to your needs
+    # {{form.config}} configuration
 {{#if output.ciphers.length}}
     ssl-default-bind-ciphers {{{join output.ciphers ":"}}}
 {{/if}}
@@ -12,7 +12,7 @@ global
     ssl-default-bind-ciphersuites {{{join output.cipherSuites ":"}}}
     {{/if}}
 {{/if}}
-    ssl-default-bind-options{{#unless (includes "SSLv3" output.protocols)}} no-sslv3{{/unless}}{{#unless (includes "TLSv1" output.protocols)}} no-tlsv10{{/unless}}{{#unless (includes "TLSv1.1" output.protocols)}} no-tlsv11{{/unless}}{{#unless (includes "TLSv1.2" output.protocols)}} no-tlsv12{{/unless}} no-tls-tickets
+    ssl-default-bind-options{{#if (minver "1.8.0" form.serverVersion)}}{{#unless output.serverPreferredOrder}} prefer-client-ciphers{{/unless}}{{/if}}{{#unless (includes "SSLv3" output.protocols)}} no-sslv3{{/unless}}{{#unless (includes "TLSv1" output.protocols)}} no-tlsv10{{/unless}}{{#unless (includes "TLSv1.1" output.protocols)}} no-tlsv11{{/unless}}{{#unless (includes "TLSv1.2" output.protocols)}} no-tlsv12{{/unless}} no-tls-tickets
 
 {{#if output.ciphers.length}}
     ssl-default-server-ciphers {{{join output.ciphers ":"}}}
@@ -26,8 +26,8 @@ global
 {{#if output.usesDhe}}
 
     {{#if (minver "1.6.0" form.serverVersion)}}
-    # {{output.dhCommand}} > /path/to/dhparam.pem
-    ssl-dh-param-file /path/to/dhparam.pem
+    # {{output.dhCommand}} > /path/to/dhparam
+    ssl-dh-param-file /path/to/dhparam
     {{else}}
     tune.ssl.default-dh-param 2048
     {{/if}}

@@ -5,7 +5,9 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
-    return 301 https://$host$request_uri;
+    location / {
+        return 301 https://$host$request_uri;
+    }
 }
 
 {{/if}}
@@ -29,8 +31,8 @@ server {
 {{/if}}
 
 {{#if output.usesDhe}}
-    # {{output.dhCommand}} > /path/to/dhparam.pem
-    ssl_dhparam /path/to/dhparam.pem;
+    # {{output.dhCommand}} > /path/to/dhparam
+    ssl_dhparam /path/to/dhparam;
 
 {{/if}}
     # {{form.config}} configuration
